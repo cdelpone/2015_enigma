@@ -1,4 +1,3 @@
-require 'date'
 require 'spec_helper'
 
 RSpec.describe Enigma do
@@ -21,7 +20,7 @@ RSpec.describe Enigma do
     expect(enigma.encrypt('hello world', '02715', '040895')).to eq(expected)
   end
 
-  it 'decrypts' do
+  xit 'decrypts' do
     enigma = Enigma.new
 
     expected = {
