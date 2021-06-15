@@ -10,6 +10,7 @@ RSpec.describe Enigma do
 
   xit 'encrypts' do
     enigma = Enigma.new
+    encrypt = Encrypt.new
 
     expected = {
                encryption: "keder ohulw",
