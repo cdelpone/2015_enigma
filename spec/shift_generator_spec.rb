@@ -14,29 +14,23 @@ RSpec.describe ShiftGenerator do
     expect(shift.random_nums.length).to eq 5
   end
 
-  xit 'returns keys as integers in a hash' do
+  it 'returns keys an array' do
     shift = ShiftGenerator.new
 
-    expect(shift.assign_keys.integer?).to eq true
-  end
-
-  it 'returns todays date as DDMMYY' do
-    shift = ShiftGenerator.new
-
-    expect(shift.convert_today_date).to eq('140621')
+    expect(shift.assign_keys.class).to eq Array
   end
 
   it 'squares transmission date' do
     shift = ShiftGenerator.new
 
-    expect(shift.transmission_date).to eq('19636441')
+    expect(shift.transmission_date).to eq('19774265641')
   end
 
   it 'returns and assigns offsets' do
     shift = ShiftGenerator.new
 
-    expected = a_offset = 6,
-              b_offset = 4,
+    expected = a_offset = 5,
+              b_offset = 6,
               c_offset = 4,
               d_offset = 1
 
@@ -45,9 +39,9 @@ RSpec.describe ShiftGenerator do
 
   it 'can create shifts' do
     shift = ShiftGenerator.new
-    combo_keys = [18, 82, 24, 49]
-    combo_offsets = [6, 4, 4, 1]
+    assign_keys = [18, 82, 24, 49]
+    assign_offsets = [5, 6, 4, 1]
 
-    expect(shift.create_shifts(combo_keys, combo_offsets)).to eq([24, 86, 28, 50])
+    expect(shift.create_shifts(assign_keys, assign_offsets)).to eq([23, 88, 28, 50])
   end
 end
