@@ -27,7 +27,7 @@ class Encrypt
       char_set[i] == @new_message[index]
     end
     index += 1
-    new_char_index = result + shift.rotate!(3)[0]
+    new_char_index = result + shift.shift.rotate!(3)[0]
     # require "pry"; binding.pry
   end
 
