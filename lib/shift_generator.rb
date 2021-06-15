@@ -1,13 +1,16 @@
 class ShiftGenerator
   attr_reader :assign_keys,
               :assign_offsets,
-              :combo_keys,
-              :combo_offsets
+              :a_shift,
+              :b_shift,
+              :c_shift,
+              :d_shift
 
   def initialize
     @random_nums = Array.new(5)
     @assign_keys = assign_keys
     @assign_offsets = assign_offsets
+    @create_shifts = create_shifts(assign_keys, assign_offsets)
     # optional initialize with rando or with nil, if nil, then do random nums  x2
   end
 
@@ -17,6 +20,7 @@ class ShiftGenerator
   end
 
   def assign_keys
+    random_nums
      @a_key = @random_nums[0,2].join.to_i
      @b_key = @random_nums[1,2].join.to_i
      @c_key = @random_nums[2,2].join.to_i
@@ -25,12 +29,8 @@ class ShiftGenerator
      combo_keys.flatten
   end
 
-  def convert_today_date
-    date = Date.today.strftime('%d%m%y'.gsub('yy', '%y'))
-  end
-
   def transmission_date
-    date = Date.today.strftime('%d %m %y'.gsub('yy', '%y'))
+    date = Date.today.strftime('%d%m%y'.gsub('yy', '%y'))
     date = date.split(' ').map(&:to_i)
       date.map! {|num| num ** 2}
     date.join
@@ -46,8 +46,8 @@ class ShiftGenerator
     combo_offsets.flatten
   end
 
-  def create_shifts(combo_keys, combo_offsets)
-    shift = [combo_offsets, combo_keys].transpose.map(&:sum)
+  def create_shifts(assign_keys, assign_offsets)
+    shift = [assign_offsets, assign_keys].transpose.map(&:sum)
     @a_shift = shift.values_at(0)
     @b_shift = shift.values_at(1)
     @c_shift = shift.values_at(2)

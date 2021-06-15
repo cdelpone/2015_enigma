@@ -5,7 +5,6 @@ class Enigma
   def initialize
     @encrypt = Hash.new
     @decrypt = Hash.new
-
     # @encryption = encrypt[:encryption]
     # @key = encrypt[:key]
     # @date = encrypt[:date]
