@@ -17,7 +17,7 @@ RSpec.describe Encrypt do
   it 'indexes the char set' do
     encrypt = Encrypt.new
 
-    message = "My name is Christina!"
+    message = 'hello world'
 
     expect(encrypt.indexed_char_set).to eq([["a", 0], ["b", 1], ["c", 2], ["d", 3], ["e", 4], ["f", 5], ["g", 6], ["h", 7], ["i", 8], ["j", 9], ["k", 10], ["l", 11], ["m", 12], ["n", 13], ["o", 14], ["p", 15], ["q", 16], ["r", 17], ["s", 18], ["t", 19], ["u", 20], ["v", 21], ["w", 22], ["x", 23], ["y", 24], ["z", 25], [" ", 26]])
   end
@@ -25,40 +25,40 @@ RSpec.describe Encrypt do
   it "turns the incoming message to an array of all lower case" do
     encrypt = Encrypt.new
 
-    message = "My name is Christina!"
+    message = 'hello world'
 
-    expect(encrypt.split_message(message)).to eq(["m", "y", " ", "n", "a", "m", "e", " ", "i", "s", " ", "c", "h", "r", "i", "s", "t", "i", "n", "a", "!"])
+    expect(encrypt.split_message(message)).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
   end
 
   xit "indexes the message" do
     encrypt = Encrypt.new
 
-    message = "My name is Christina!"
+    message = 'hello world'
 
     encrypt.split_message(message)
 
-    expect(encrypt.index_message).to eq([["m", 1], ["y", 2], [" ", 3], ["n", 4], ["a", 5], ["m", 6], ["e", 7], [" ", 8], ["i", 9], ["s", 10], [" ", 11], ["c", 12], ["h", 13], ["r", 14], ["i", 15], ["s", 16], ["t", 17], ["i", 18], ["n", 19], ["a", 20], ["!", 21]])
+    expect(encrypt.index_message).to eq([["h", 1], ["e", 2], ["l", 3], ["l", 4], ["o", 5], [" ", 6], ["w", 7], ["o", 8], ["r", 9], ["l", 10], ["d", 11]])
   end
 
   it "returns char set index number for given letter" do
     encrypt = Encrypt.new
     shift = ShiftGenerator.new
 
-    message = "My name is Christina!"
+    message = 'hello world'
 
     encrypt.split_message(message)
 
-    expect(encrypt.find_index).to eq(12)
+    expect(encrypt.find_index(0)).to eq(7)
   end
 
-  it 'returns the encrypted letter' do
+  it 'returns the encrypted message' do
     encrypt = Encrypt.new
     shift = ShiftGenerator.new
 
-    allow_any_instance_of(ShiftGenerator).to receive(:shift).and_return([23, 88, 28, 50])
-    message = "My name is Christina!"
+    allow_any_instance_of(ShiftGenerator).to receive(:shift).and_return([03, 27, 73, 20])
+    message = 'hello world'
 
     encrypt.split_message(message)
-    expect(encrypt.encrypted_letter).to eq(['n'])
+    expect(encrypt.encryption).to eq("keder ohulw")
   end
 end

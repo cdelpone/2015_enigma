@@ -13,14 +13,14 @@ class Enigma
   def encrypt(message, key, date)
     @encrypt = {}
     if @encrypt[:encryption].nil?
-      @encrypt[:encryption] = message
+      @encrypt[:encryption] = encrypted_message
     end
-    if @encrypt[:key].nil?
-      @encrypt[:key] = key
-    end
-    if @encrypt[:date].nil?
-      @encrypt[:date] = date
-    end
+    # if @encrypt[:key].nil?
+    #   @encrypt[:key] = key
+    # end
+    # if @encrypt[:date].nil?
+    #   @encrypt[:date] = date
+    # end
     @encrypt
   end
 

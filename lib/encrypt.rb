@@ -1,6 +1,8 @@
 class Encrypt
   attr_reader :message
 
+  attr_accessor :encrypted_message
+
   def initialize
     @new_message = []
     @encrypted_message = []
@@ -23,29 +25,20 @@ class Encrypt
   #   @new_message.map.with_index(1).to_a
   # end
 
-  def find_index
-    @index = 0
+  def find_index(index)
     @result = char_set.each_index.detect do |i|
-      char_set[i] == @new_message[@index]
+      char_set[i] == @new_message[index]
     end
-    @index += 1
     @result
   end
 
-  def encrypted_letter
-    @index = 0
-    while @index <= (@new_message.count -1)
-      find_index
+  def encryption
     shift = ShiftGenerator.new
+    @new_message.each do |letter|
+      find_index(@new_message.index(letter))
     new_char_index = @result + shift.all_shifts.rotate!(3)[0]
     @encrypted_message << char_set[new_char_index.to_i % 27]
   end
-  @encrypted_message
-end
-
-  def loop
-    @new_messages.map do |letter|
-      letter.encrypted_letter
-    end
+  @encrypted_message.join
   end
 end
