@@ -1,6 +1,7 @@
 class ShiftGenerator
   attr_reader :assign_keys,
               :assign_offsets,
+              :all_shifts,
               :a_shift,
               :b_shift,
               :c_shift,
@@ -10,7 +11,7 @@ class ShiftGenerator
     @random_nums = Array.new(5)
     @assign_keys = assign_keys
     @assign_offsets = assign_offsets
-    @create_shifts = create_shifts(assign_keys, assign_offsets)
+    @all_shifts = create_shifts(assign_keys, assign_offsets)
     # optional initialize with rando or with nil, if nil, then do random nums  x2
   end
 
