@@ -17,13 +17,8 @@ class Encrypt
   end
 
   def split_message(message)
-    @new_message = message.downcase.split("")
-    @new_message.flatten
+    @new_message = (message.downcase.split("")).flatten
   end
-
-  # def index_message
-  #   @new_message.map.with_index(1).to_a
-  # end
 
   def find_index(index)
     @result = char_set.each_index.detect do |i|
@@ -32,7 +27,7 @@ class Encrypt
     @result
   end
 
-  def encryption
+  def encrypt_message
     shift = ShiftGenerator.new
     @new_message.each do |letter|
       find_index(@new_message.index(letter))

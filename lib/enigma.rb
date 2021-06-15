@@ -5,22 +5,19 @@ class Enigma
   def initialize
     @encrypt = Hash.new
     @decrypt = Hash.new
-    # @encryption = encrypt[:encryption]
-    # @key = encrypt[:key]
-    # @date = encrypt[:date]
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = nil, date = nil)
     @encrypt = {}
     if @encrypt[:encryption].nil?
-      @encrypt[:encryption] = encrypted_message
+      @encrypt[:encryption] = @encrypt_message
     end
-    # if @encrypt[:key].nil?
-    #   @encrypt[:key] = key
-    # end
-    # if @encrypt[:date].nil?
-    #   @encrypt[:date] = date
-    # end
+    if @encrypt[:key].nil?
+      @encrypt[:key] = @assign_keys
+    end
+    if @encrypt[:date].nil?
+      @encrypt[:date] = @convert_today_date
+    end
     @encrypt
   end
 

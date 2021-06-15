@@ -8,9 +8,10 @@ RSpec.describe Enigma do
     expect(enigma).to be_an Enigma
   end
 
-  xit 'encrypts' do
+  it 'encrypts' do
     enigma = Enigma.new
     encrypt = Encrypt.new
+    shift = ShiftGenerator.new
 
     expected = {
                encryption: "keder ohulw",
@@ -21,7 +22,7 @@ RSpec.describe Enigma do
     expect(enigma.encrypt('hello world', '02715', '040895')).to eq(expected)
   end
 
-  xit 'decrypts' do
+  it 'decrypts' do
     enigma = Enigma.new
 
     expected = {
