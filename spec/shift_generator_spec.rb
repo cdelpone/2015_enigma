@@ -29,11 +29,13 @@ RSpec.describe ShiftGenerator do
   it 'squares transmission date' do
     shift = ShiftGenerator.new
 
+    allow(shift.transmission_date).to receive(:date).and_return('040895')
     expect(shift.transmission_date('040895')).to eq('1672401025')
   end
 
-  xit 'returns and assigns offsets' do
+  it 'returns and assigns offsets' do
     shift = ShiftGenerator.new
+    allow(shift.transmission_date).to receive(:date).and_return('040895')
 
     expected = a_offset = 1,
               b_offset = 0,

@@ -30,16 +30,6 @@ RSpec.describe Encrypt do
     expect(encrypt.split_message(message)).to eq(["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
   end
 
-  xit "indexes the message" do
-    encrypt = Encrypt.new
-
-    message = 'hello world'
-
-    encrypt.split_message(message)
-
-    expect(encrypt.index_message).to eq([["h", 1], ["e", 2], ["l", 3], ["l", 4], ["o", 5], [" ", 6], ["w", 7], ["o", 8], ["r", 9], ["l", 10], ["d", 11]])
-  end
-
   it "returns char set index number for given letter" do
     encrypt = Encrypt.new
     shift = ShiftGenerator.new

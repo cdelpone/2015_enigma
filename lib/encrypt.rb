@@ -21,10 +21,6 @@ class Encrypt
     @new_message.flatten
   end
 
-  # def index_message
-  #   @new_message.map.with_index(1).to_a
-  # end
-
   def find_index(index)
     @result = char_set.each_index.detect do |i|
       char_set[i] == @new_message[index]
