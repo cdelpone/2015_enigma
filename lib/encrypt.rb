@@ -1,39 +1,20 @@
+require_relative 'enigma'
+
 class Encrypt
-  attr_reader :message
 
-  attr_accessor :encrypted_message
+  @enigma_machine = Enigma.new
 
-  def initialize
-    @new_message = []
-    @encrypted_message = []
-  end
+  file = File.open(ARGV.first, "r")
 
-  def char_set
-    char_set = ("a".."z").to_a << " "
-  end
+  text = file.read.chomp
 
-  def indexed_char_set
-    @new_char_set = char_set.map.with_index(0).to_a
-  end
+  result = @enigma_machine.encrypt(text)
 
-  def split_message(message)
-    @new_message = (message.downcase.split("")).flatten
-  end
+  file_output = ARGV.last
 
-  def find_index(index)
-    @result = char_set.each_index.detect do |i|
-      char_set[i] == @new_message[index]
-    end
-    @result
-  end
+  new_file = File.open(file_output, "w")
 
-  def encrypt_message
-    shift = ShiftGenerator.new
-    @new_message.each do |letter|
-      find_index(@new_message.index(letter))
-    new_char_index = @result + shift.all_shifts.rotate!(3)[0]
-    @encrypted_message << char_set[new_char_index.to_i % 27]
-  end
-  @encrypted_message.join
-  end
+  new_file.write(result[:encryption])
+
+  puts "Created #{file} with the key 82648 and date 240818"
 end

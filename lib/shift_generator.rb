@@ -1,8 +1,8 @@
+require 'date'
 class ShiftGenerator
   attr_reader :assign_keys,
               :assign_offsets,
-              :all_shifts,
-              :date
+              :all_shifts
 
   def initialize
     @random_nums = Array.new(5)
@@ -13,34 +13,31 @@ class ShiftGenerator
   end
 
   def random_nums
-    nums = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+    nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     @random_nums = nums.sample(5)
   end
 
   def assign_keys
     random_nums
-     @a_key = @random_nums[0,2].join.to_i
-     @b_key = @random_nums[1,2].join.to_i
-     @c_key = @random_nums[2,2].join.to_i
-     @d_key = @random_nums[3,2].join.to_i
-     combo_keys = @a_key, @b_key, @c_key, @d_key
-     combo_keys.flatten
+    @a_key = @random_nums[0, 2].join.to_i
+    @b_key = @random_nums[1, 2].join.to_i
+    @c_key = @random_nums[2, 2].join.to_i
+    @d_key = @random_nums[3, 2].join.to_i
+    combo_keys = @a_key, @b_key, @c_key, @d_key
+    combo_keys.flatten
   end
 
   def convert_today_date(date = nil)
-    if date.nil?
-      date = Date.today.strftime('%d%m%y'.gsub('yy', '%y'))
-    else
-      date = date
-    end
+    date = if date.nil?
+             Date.today.strftime('%d%m%y'.gsub('yy', '%y'))
+           else
+             date
+           end
   end
 
   def transmission_date(date = nil)
-    if date.nil?
-      date = Date.today.strftime('%d%m%y'.gsub('yy', '%y'))
-        date = (date.to_i ** 2).to_s
-    else date = (date.to_i ** 2).to_s
-    end
+    date = Date.today.strftime('%d%m%y'.gsub('yy', '%y')) if date.nil?
+    date = (date.to_i**2).to_s
   end
 
   def assign_offsets

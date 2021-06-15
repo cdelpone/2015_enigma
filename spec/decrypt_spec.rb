@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe Decrypt do
-
   it 'exists' do
     decrypt = Decrypt.new
 

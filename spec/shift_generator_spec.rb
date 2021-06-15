@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe ShiftGenerator do
-
   it 'exists' do
     shift = ShiftGenerator.new
 
@@ -40,18 +39,18 @@ RSpec.describe ShiftGenerator do
     # transmission_date = "1672401025"
     # split_date = ["1", "6", "7", "2", "4", "0", "1", "0", "2", "5"]
     expected = a_offset = 1,
-              b_offset = 0,
-              c_offset = 2,
-              d_offset = 5
+               b_offset = 0,
+               c_offset = 2,
+               d_offset = 5
 
     expect(shift.assign_offsets).to eq(expected)
   end
 
   it 'can create shifts' do
     shift = ShiftGenerator.new
-    assign_keys = [02, 27, 71, 15]
+    assign_keys = [0o2, 27, 71, 15]
     assign_offsets = [1, 0, 2, 5]
 
-    expect(shift.create_shifts(assign_keys, assign_offsets)).to eq([03, 27, 73, 20])
+    expect(shift.create_shifts(assign_keys, assign_offsets)).to eq([0o3, 27, 73, 20])
   end
 end
