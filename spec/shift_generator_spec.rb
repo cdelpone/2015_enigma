@@ -29,14 +29,16 @@ RSpec.describe ShiftGenerator do
   it 'squares transmission date' do
     shift = ShiftGenerator.new
 
-    allow(shift.transmission_date).to receive(:date).and_return('040895')
+    # allow(shift.transmission_date).to receive(:date).and_return('040895')
     expect(shift.transmission_date('040895')).to eq('1672401025')
   end
 
   it 'returns and assigns offsets' do
     shift = ShiftGenerator.new
-    allow(shift.transmission_date).to receive(:date).and_return('040895')
-
+    # split_date = (date.to_s).split('')
+    # allow(shift.transmission_date('040895')).to receive(:date).and_return('040895')
+    # transmission_date = "1672401025"
+    # split_date = ["1", "6", "7", "2", "4", "0", "1", "0", "2", "5"]
     expected = a_offset = 1,
               b_offset = 0,
               c_offset = 2,

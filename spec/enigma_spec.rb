@@ -11,6 +11,7 @@ RSpec.describe Enigma do
   it 'encrypts' do
     enigma = Enigma.new
     encrypt = Encrypt.new
+    shift = ShiftGenerator.new
 
     expected = {
                encryption: "keder ohulw",
